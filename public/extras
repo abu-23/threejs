@@ -1,0 +1,34 @@
+// Web GL Compatiblity
+// if (WebGL.isWebGLAvailable()) {
+//     // Initiate function or other initializations here
+//     console.log("yes");
+//     // animate();
+//   } else {
+//     const warning = WebGL.getWebGLErrorMessage();
+//     document.getElementById("container").appendChild(warning);
+//   }
+
+// new
+const model = gltf.scene;
+model.position.set(1, 1, 0);
+model.scale.set(0.01, 0.01, 0.01);
+scene.add(model);
+
+let mixer = new THREE.AnimationMixer(model);
+mixer.clipAction(gltf.animations[0]).play();
+
+animate2();
+
+function animate2() {
+    requestAnimationFrame(animate);
+  
+    const delta = clock.getDelta();
+  
+    mixer.update(delta);
+  
+    controls.update();
+  
+    stats.update();
+  
+    renderer.render(scene, camera);
+  }
